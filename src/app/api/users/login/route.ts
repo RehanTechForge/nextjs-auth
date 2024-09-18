@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import User from "@/models/userModel";
 import bcryptjs from "bcryptjs";
-import sendEmail from "@/helpers/mailer";
 import { connectDB } from "@/db/db";
 import jwt from "jsonwebtoken";
 connectDB();
