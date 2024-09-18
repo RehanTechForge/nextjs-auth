@@ -25,6 +25,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({
       message: "User Found",
       secure: true,
+      user: user,
     });
   } catch (error: any) {
     return NextResponse.json(
