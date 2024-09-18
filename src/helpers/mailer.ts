@@ -17,25 +17,65 @@ const sendEmail = async ({ email, emailType, userId }: any) => {
       });
     }
 
-    const VERIFY_EMAIL_HTML = `<p>Click <a href="${
-      process.env.DOMAIN
-    }/verifyemail?token=${hashedToken}">Here</a> to ${
-      emailType === "VERIFY" ? "Verify Your Email" : "Reset Your Password"
-    }
-      or copy and paste the link below in your browser
-      <br/>
-      ${process.env.DOMAIN}/verifyemail?token=${hashedToken}
-      </p>`;
+    const VERIFY_EMAIL_HTML = `
+  <div style="font-family: Arial, sans-serif; color: #333; padding: 20px;">
+    <h2 style="color: #007bff;">Email Verification</h2>
+    <p>
+      Click <a href="${
+        process.env.DOMAIN
+      }/verifyemail?token=${hashedToken}" style="color: #007bff; text-decoration: none; font-weight: bold;">here</a> to ${
+      emailType === "VERIFY" ? "verify your email" : "reset your password"
+    }.
+    </p>
+    <p>
+      Alternatively, copy and paste the link below into your browser:
+    </p>
+    <p>
+      <a href="${
+        process.env.DOMAIN
+      }/verifyemail?token=${hashedToken}" style="color: #007bff; text-decoration: none;">
+        ${process.env.DOMAIN}/verifyemail?token=${hashedToken}
+      </a>
+    </p>
+    <p style="font-size: 0.9em; color: #555;">
+      If you did not request this, please ignore this email.
+    </p>
+    <p style="font-size: 0.8em; color: #777;">
+      Regards,<br/>
+      Muhammad Rehan
+    </p>
+  </div>
+`;
 
-    const RESET_PASSWORD_HTML = `<p>Click <a href="${
-      process.env.DOMAIN
-    }/forgotpassword?token=${hashedToken}">Here</a> to ${
-      emailType === "VERIFY" ? "Verify Your Email" : "Reset Your Password"
-    }
-      or copy and paste the link below in your browser
-      <br/>
-      ${process.env.DOMAIN}/forgotpassword?token=${hashedToken}
-      </p>`;
+    const RESET_PASSWORD_HTML = `
+  <div style="font-family: Arial, sans-serif; color: #333; padding: 20px;">
+    <h2 style="color: #007bff;">Password Reset</h2>
+    <p>
+      Click <a href="${
+        process.env.DOMAIN
+      }/forgotpassword?token=${hashedToken}" style="color: #007bff; text-decoration: none; font-weight: bold;">here</a> to ${
+      emailType === "VERIFY" ? "verify your email" : "reset your password"
+    }.
+    </p>
+    <p>
+      Alternatively, copy and paste the link below into your browser:
+    </p>
+    <p>
+      <a href="${
+        process.env.DOMAIN
+      }/forgotpassword?token=${hashedToken}" style="color: #007bff; text-decoration: none;">
+        ${process.env.DOMAIN}/forgotpassword?token=${hashedToken}
+      </a>
+    </p>
+    <p style="font-size: 0.9em; color: #555;">
+      If you did not request this, please ignore this email.
+    </p>
+    <p style="font-size: 0.8em; color: #777;">
+      Regards,<br/>
+      Muhammad Rehan
+    </p>
+  </div>
+`;
 
     // Looking to send emails in production? Check out our Email API/SMTP product!
     const transport = nodemailer.createTransport({
